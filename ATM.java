@@ -53,6 +53,11 @@ public class ATM {
         }
     }
 
-    public void audit() throws Exception {
+    public void audit() throws IOException {
+        PrintWriter file_writer = new PrintWriter(new BufferedWriter(new FileWriter ("BankingAudit.txt")));
+        for (Map.Entry<String, Double> account: accounts.entrySet()) {
+            file_writer.println("{ Username: " + account.getKey() + ", Balance: " + account.getValue() + " }");
+        }
+        file_writer.close();
     }
 }
