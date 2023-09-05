@@ -41,8 +41,16 @@ public class ATM {
         return dAmount;
     }
 
-    public boolean transferMoney(String sFromAccount, String sToAccount, double dAmount) throws Exception {
-        return false;
+    public boolean transferMoney(String sFromAccount, String sToAccount, double dAmount) {
+        if (!accounts.containsKey(sFromAccount) || !accounts.containsKey(sToAccount))
+            return false;
+        try {
+            withdrawMoney (sFromAccount, dAmount);
+            depositMoney (sToAccount, dAmount);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public void audit() throws Exception {
