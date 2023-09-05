@@ -26,7 +26,10 @@ public class ATM {
     }
 
     public double depositMoney(String sUserID, double dAmount) throws Exception {
-        return 0.0;
+        if (!accounts.containsKey(sUserID))
+            throw new Exception ("The account you are trying to access does not exist.");
+        accounts.put (sUserID, accounts.get(sUserID) + dAmount);
+        return dAmount;
     }
 
     public double withdrawMoney(String sUserID, double dAmount) throws Exception {
